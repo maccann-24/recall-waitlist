@@ -18,6 +18,7 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://therecallapp-waitlist.vercel.app'),
   title: "Recall — History doesn't repeat. It coheres.",
   description:
     'One question every morning. The answer arrives tomorrow. At the end of each month, thirty apparently disconnected stories reveal they were never disconnected at all.',
@@ -31,6 +32,7 @@ export const metadata: Metadata = {
     site: '@recallapp',
     title: 'Recall',
     description: "History doesn't repeat. It coheres.",
+    images: ['/og-image.png'],
   },
 }
 

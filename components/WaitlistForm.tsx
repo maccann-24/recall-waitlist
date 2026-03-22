@@ -84,7 +84,7 @@ export default function WaitlistForm() {
           display: 'flex',
           gap: '12px',
           flexWrap: 'wrap',
-          maxWidth: '440px',
+          maxWidth: '520px',
         }}
       >
         <input

@@ -6,8 +6,9 @@ import ConceptCards from '@/components/ConceptCards'
 export default function Home() {
   return (
     <>
-      {/* Gold vertical bar — fixed left */}
+      {/* Gold vertical bar — fixed left, subtle pulse */}
       <div
+        className="gold-bar"
         style={{
           position: 'fixed',
           left: 0,

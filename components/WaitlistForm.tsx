@@ -11,6 +11,7 @@ function isValidEmail(email: string): boolean {
 export default function WaitlistForm() {
   const [state, setState] = useState<FormState>('default')
   const [email, setEmail] = useState('')
+  const [fadeOut, setFadeOut] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
   async function handleSubmit() {
@@ -33,7 +34,9 @@ export default function WaitlistForm() {
 
       if (!res.ok) throw new Error('Server error')
 
-      setState('success')
+      // Fade out form, then show success
+      setFadeOut(true)
+      setTimeout(() => setState('success'), 300)
     } catch {
       setState('error')
     }
@@ -78,7 +81,12 @@ export default function WaitlistForm() {
   }
 
   return (
-    <div className={`form-wrap ${state === 'loading' ? '' : ''}`}>
+    <div
+      style={{
+        transition: 'opacity 300ms ease',
+        opacity: fadeOut ? 0 : 1,
+      }}
+    >
       <div
         style={{
           display: 'flex',
@@ -99,6 +107,7 @@ export default function WaitlistForm() {
           }}
           onKeyDown={handleKeyDown}
           disabled={state === 'loading'}
+          className="email-input-glow"
           style={{
             flex: 1,
             minWidth: '240px',
@@ -110,7 +119,8 @@ export default function WaitlistForm() {
             fontSize: '14px',
             padding: '16px 20px',
             outline: 'none',
-            transition: 'border-color 200ms ease',
+            transition: 'border-color 200ms ease, box-shadow 400ms ease',
+            borderRadius: 0,
           }}
           onFocus={(e) => {
             e.currentTarget.style.borderColor = '#C4A35A'
@@ -122,6 +132,7 @@ export default function WaitlistForm() {
         <button
           onClick={handleSubmit}
           disabled={state === 'loading'}
+          className="waitlist-btn"
           style={{
             background: 'transparent',
             border: '1px solid #C4A35A',
@@ -132,22 +143,13 @@ export default function WaitlistForm() {
             letterSpacing: '0.2em',
             padding: '16px 32px',
             cursor: state === 'loading' ? 'not-allowed' : 'pointer',
-            transition: 'all 200ms ease',
+            transition: 'color 300ms ease',
             whiteSpace: 'nowrap',
             opacity: state === 'loading' ? 0.5 : 1,
-          }}
-          onMouseEnter={(e) => {
-            if (state !== 'loading') {
-              e.currentTarget.style.background = '#C4A35A'
-              e.currentTarget.style.color = '#070707'
-            }
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'transparent'
-            e.currentTarget.style.color = '#C4A35A'
+            borderRadius: 0,
           }}
         >
-          {state === 'loading' ? '...' : 'JOIN THE WAITLIST'}
+          <span>{state === 'loading' ? '...' : 'JOIN THE WAITLIST'}</span>
         </button>
       </div>
       {state === 'error' && (
@@ -157,7 +159,9 @@ export default function WaitlistForm() {
             fontWeight: 300,
             fontSize: '13px',
             color: '#886030',
+            fontStyle: 'italic',
             marginTop: '12px',
+            animation: 'fadeUp 0.3s ease both',
           }}
         >
           Something went wrong. Try again.

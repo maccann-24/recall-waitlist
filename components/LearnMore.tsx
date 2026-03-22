@@ -47,6 +47,7 @@ export default function LearnMore() {
       </button>
 
       <div
+        className={open ? 'learn-open' : ''}
         style={{
           maxHeight: open ? '2000px' : '0',
           overflow: 'hidden',
@@ -57,6 +58,7 @@ export default function LearnMore() {
       >
         {/* Section: Daily Recall */}
         <div
+          className="learn-section"
           style={{
             padding: '40px 0',
             borderTop: '1px solid #141210',
@@ -75,6 +77,7 @@ export default function LearnMore() {
             DAILY &middot; RECALL
           </p>
           <div
+            className="learn-rule"
             style={{
               width: '100%',
               height: '1px',
@@ -116,6 +119,7 @@ export default function LearnMore() {
 
         {/* Section: Weekly Resolve */}
         <div
+          className="learn-section"
           style={{
             padding: '40px 0',
             borderTop: '1px solid #141210',
@@ -134,6 +138,7 @@ export default function LearnMore() {
             WEEKLY &middot; RESOLVE
           </p>
           <div
+            className="learn-rule"
             style={{
               width: '100%',
               height: '1px',
@@ -171,6 +176,7 @@ export default function LearnMore() {
 
         {/* Section: Monthly Coherence */}
         <div
+          className="learn-section"
           style={{
             padding: '40px 0',
             borderTop: '1px solid #141210',
@@ -190,6 +196,7 @@ export default function LearnMore() {
             MONTHLY &middot; COHERENCE
           </p>
           <div
+            className="learn-rule"
             style={{
               width: '100%',
               height: '1px',
